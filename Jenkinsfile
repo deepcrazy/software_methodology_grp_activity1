@@ -14,15 +14,10 @@ pipeline {
                 sh 'npm install'
             }
         }
-        // stage('Test') {
-        //     steps {
-        //         sh 'npm run test'
-        //     }
-        // }
-        // stage('Test') {
-        //     steps {
-        //         sh './jenkins/scripts/test.sh'
-        //     }
-        // }
+        stage('Test') {
+            steps {
+                sh 'npm run test'
+            }
+        }
     }
 }
