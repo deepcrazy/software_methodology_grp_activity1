@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const ethers = require('ethers')
@@ -13,21 +12,26 @@ const from_address = "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0"
 const to_address = "0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b"
 
 function App() {
+  const [amount, setAmount] = React.useState("")
+  const [sent, setSent] = React.useState(false)
+  const changeAmount = event => {
+    if (Number(event.target.value) || event.target.value === "") {
+      setAmount(event.target.value)
+      setSent(false)
+    }
+  }
+  const sendAmount = () => {
+    setSent(true)
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <label>
+        Amount:
+        <input type="text" name="name" value={amount} onChange={changeAmount}/>
+      </label>
+      <button onClick={sendAmount} disabled={amount === "" || sent}>Send</button>
+      {sent && <p>Transaction Sent!</p>}
       </header>
     </div>
   );
